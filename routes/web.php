@@ -29,6 +29,10 @@ Route::get('/userLogout',[CustomerController::class,'userLogout'])->name('user.l
 
 Route::get('/cartPage',[CartController::class,'cartPage'])->name('cart.page');
 Route::get('/addItem/{id}',[CartController::class,'addItem'])->name('item.add');
+Route::get('/inQuantity/{id}',[CartController::class,'quantityPlus'])->name('plus.item');
+Route::get('/deQuantity/{id}',[CartController::class,'quantityMinus'])->name('minus.item');
+Route::get('/deleteCartItem/{id}',[CartController::class,'deleteCartItem'])->name('delete.item');
+
 
 
 Route::get('/',[HomeController::class,'index'])->name('home');

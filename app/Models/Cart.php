@@ -18,4 +18,20 @@ class Cart extends Model
         self::$detail -> product_id = $id;
         self::$detail -> save();
     }
+
+    public static function increaseQuantity($id){
+        self::$detail = Cart::find($id);
+        self::$detail -> product_quantity += 1;
+        self::$detail -> save();
+    }
+
+    public static function decreaseQuantity($id){
+        self::$detail = Cart::find($id);
+        if (self::$detail -> product_quantity == 1){
+            self::$detail -> delete();
+        }else{
+            self::$detail -> product_quantity -= 1;
+            self::$detail -> save();
+        }
+    }
 }

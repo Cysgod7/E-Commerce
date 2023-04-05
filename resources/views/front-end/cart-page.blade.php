@@ -17,25 +17,32 @@
                     <td style="padding: 22px 0 0 5px">{{$item -> brand_name}} {{$item ->  product_name}}</td>
                     <td style="padding: 22px 0 0 5px">{{$item -> cat_name}}</td>
                     <td style="padding: 22px 0 0 5px">
-                        <a href="" style="color: gray"><i class="fa-solid fa-circle-minus"></i></a>
+                        <a href="{{route('minus.item',['id' => $item -> id])}}" style="color: gray"><i class="fa-solid fa-circle-minus"></i></a>
                         {{$item -> product_quantity}}
-                        <a href="" style="color: gray"><i class="fa-solid fa-circle-plus"></i></a>
+                        <a href="{{route('plus.item',['id' => $item -> id])}}" style="color: gray"><i class="fa-solid fa-circle-plus"></i></a>
                     </td>
-                    <td style="padding: 22px 0 0 5px">{{$item ->  product_price}}$</td>
+                    <td style="padding: 22px 0 0 5px">{{$item ->  product_price * $item -> product_quantity}}$</td>
                     <td style="padding: 22px 0 0 5px">
-                        <a href="" style="color: red"><i class="fa-regular fa-trash-can"></i></a>
+                        <a href="{{route('delete.item',['id' => $item -> id])}}" style="color: red"><i class="fa-regular fa-trash-can"></i></a>
                     </td>
                 </tr>
             @endforeach
+            @if(!$cartItem -> isEmpty())
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td><strong>Total</strong></td>
-                    <td>$</td>
+                    <td>{{Session::get('cartItemPrice')}}$</td>
                     <td></td>
                 </tr>
+            @else
+                <div class="container">
+                    <h4 style="color: red">There is no item in the cart <i class="fa-solid fa-cart-shopping"></i></h4>
+                    <p>Return to <a href="{{route('all.products')}}">Shop</a> </p>
+                </div>
+            @endif
             </tbody>
         </table>
     </div>

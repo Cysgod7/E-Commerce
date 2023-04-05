@@ -42,6 +42,8 @@ class CustomerController extends Controller
     public function userLogout(){
         Session::forget('customerId');
         Session::forget('customerName');
+        Session::forget('cartItemCount');
+        Session::forget('cartItemPrice');
         return redirect('/');
     }
 }

@@ -32,7 +32,7 @@
             <div class="col-sm-6">
                 @if(Session::get('customerId'))
                 <div class="shopping-item">
-                    <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">10</span></a>
+                    <a href="{{route('cart.page')}}">Cart - <span class="cart-amunt">{{Session::get('cartItemPrice')}} $</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{{Session::get('cartItemCount')}}</span></a>
                 </div>
                 @endif
             </div>
